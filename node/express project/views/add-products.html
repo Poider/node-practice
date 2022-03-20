@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>add product</title>
+	<style type="text/css">
+		a {
+			text-decoration: none !important;
+		}
+
+		body {
+			font-family: sans-serif;
+			padding: 0;
+			margin: 0;
+
+		}
+
+		main {
+			padding: 1 rem;
+		}
+
+		.main-header {
+			background-color: #bedc53;
+			width: 100%;
+			padding: 1.5rem;
+		}
+
+		.main-header__nav {
+
+			height: 100%;
+			display: flex;
+			align-items: center;
+
+		}
+
+		.main-header__list {
+
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			display: flex;
+
+
+		}
+
+		.main-header__item {
+
+			margin: 0 1rem;
+			padding: 0;
+		}
+
+		.main-body {
+			padding: 1rem;
+		}
+
+		.main-body__form {
+			margin: auto;
+			max-width: 90%;
+			width: 20rem
+		}
+
+		#submit {
+			font: inherit;
+			display: block;
+			margin-top: 0.5rem;
+			padding : 0.3rem 1rem;
+			border-radius: 3px;
+			border : 1px solid #390727;
+			background-color: rgb(105, 115, 205);
+			cursor: pointer;
+		}
+	
+		input {
+			font: inherit;
+			font-family: inherit;
+			margin: 0.1rem 0;
+			min-width: 60%;
+			display: block;
+		}
+
+		label {
+			font: inherit;
+		}
+
+		button:hover,button:active{
+			background-color:rgb(197, 223, 160);
+			color:white;
+		}
+		.main-header__item:hover,
+		.main-header__item:active{
+			background-color: rgb(113, 125, 196) !important;
+		}
+	</style>
+</head>
+
+<body>
+	<header class="main-header">
+		<nav class="main-header__nav"></nav>
+		<ul class="main-header__list">
+
+			<li class="main-header__item"><a href="/products">Products</a></li>
+			<li class="main-header__item"><a href="add-products">Add Product</a></li>
+		</ul>
+		</nav>
+	</header>
+	<main class="main-body">
+		<form action="/product-added" method="post" class="main-body__form">
+			<!-- send it to a page that checks if the product successfully added, and redirect depending on whether it failed or not -->
+			<label name="product_title_lable">Title</label>
+			<input type="text" name="product_title" id="product_title" placeholder="product title">
+			<button type="submit" id="submit">Add</button>
+		</form>
+
+	</main>
+</body>
+
+</html>
