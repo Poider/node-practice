@@ -12,16 +12,16 @@ const errorroutes = require('./routes/error')
 
 
 function otherfunctionality() {
-app.set('view engine', 'pug');
-app.set('views','./views/templates');
-app.use(express.static(path.join(__dirname, 'public'))); //setting the public static folder of public stuff
-app.use(parser.urlencoded({extended: false})); // setting the parser for text
+	app.set('view engine', 'pug');
+	app.set('views', './views/templates');
+	app.use(express.static(path.join(__dirname, 'public'))); //setting the public static folder of public stuff
+	app.use(parser.urlencoded({ extended: false })); // setting the parser for text
 }
 
-function routing(){
-app.use(shoproutes);
-app.use(adminroutes);
-app.use(errorroutes);
+function routing() {
+	app.use(shoproutes);
+	app.use(adminroutes);
+	app.use(errorroutes);
 }
 // let i = 0;
 otherfunctionality();

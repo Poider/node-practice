@@ -4,24 +4,15 @@ const path = require('path');
 
 const router = express.Router();
 
-router.get('/',(req, res,next) => {
-	res.redirect('/products');
-})
+const errorController = require('../controllers/error');
+
+router.get('/',errorController.routeRedirect);
 
 // router.use('/error',(req, res, next)=>{
 // 	res.send(`<h1>Error 404</h1>`)
 // })
-// router.use((req, res, next) => {
-// 	// console.log(req.url, i++);
-// 	console.log(req.body);
-// 	next();
-// })
-router.use((req, res, next) => {
-	// res.status(404).sendFile(path.join(__dirname, '../','views','error.html'));
-	res.status(404).render('error',{Title:'Page Not Found'});
-	// res.redirect('/error')
-	// res.send();
-	// res.end();
-})
+
+// router.use(productController.body_print)
+router.use(errorController.getError)
 
 module.exports = router;
