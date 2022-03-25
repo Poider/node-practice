@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const productController = require('../controllers/products');
+const productController = require('../controllers/users');
 
 // const path = require('path');
 
@@ -11,7 +11,13 @@ const productController = require('../controllers/products');
 // 	next();
 // })
 
-router.post('/product-added',productController.getProductadded);
 
+//new routes
+router.use('/cart',productController.getCart);
+router.use('/orders',productController.getOrders);
+router.use('/checkout',productController.getCheckout);
+router.use('/index',productController.getIndex);
+router.use('/product-details',productController.getProductDetails);
+router.use('/products',productController.getProducts);
 
 module.exports = router;

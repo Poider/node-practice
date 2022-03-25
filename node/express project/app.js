@@ -11,7 +11,7 @@ const adminroutes = require('./routes/admin.js');
 const errorroutes = require('./routes/error')
 
 
-function otherfunctionality() {
+function otherfunctionalities() {
 	app.set('view engine', 'pug');
 	app.set('views', './views/templates');
 	app.use(express.static(path.join(__dirname, 'public'))); //setting the public static folder of public stuff
@@ -24,7 +24,7 @@ function routing() {
 	app.use(errorroutes);
 }
 // let i = 0;
-otherfunctionality();
+otherfunctionalities();
 routing();
 // const server = http.createServer(app);
 // server.listen(3000);
