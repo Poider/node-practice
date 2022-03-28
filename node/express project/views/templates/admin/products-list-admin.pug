@@ -16,9 +16,11 @@ block content
 								img(class = "images" src = product.imageurl alt ="product image" width="200" height="200")
 							h5(style= "margin-bottom:0.5rem;") Description:
 							li.main-body__item(style= "margin:0;  white-space: pre-line;font-size:0.8rem;margin-left:1rem") #{product.description}
-							form(action="/delete-product" method="get")
+							form(action="/delete-product" method="post")
+								input(type="hidden" value = product.id)
 								button#submit(type="submit" class="product_title") Delete product
-							form(action="/edit-product" method="get")
-								button#submit(type="submit" class="product_title") Edit product
+							//- form(action="/edit-product" method="get")
+							//- 	button#submit(type="submit" class="product_title") Edit product
+							a#submit(href='/edit-products/' + product.id) edit
 			else
-				h1.not-available No products available
+				h1 No products available

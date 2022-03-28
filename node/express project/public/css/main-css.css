@@ -63,3 +63,12 @@ h1.not-available{
 .main__nav{
 	text-align: center;
 }
+
+.center_content {
+	text-align: center;
+	/* align-items: center;
+	border: 3px solid rgb(240, 0, 0); */
+}
+.border {
+	border: 3px solid rgb(240, 0, 0); 
+}

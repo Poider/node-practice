@@ -1,7 +1,9 @@
 extends ../layouts/main-layout.pug
+block css
+	link(rel='stylesheet' href='/css/form-css.css')
 block content
 	main.main-body
-		nav.main-body__nav
-			h1(style = "text-align:center") Product Added
-			form(action='/')
-				button#submit_go_back(type='Submit') Go back
+		nav
+			h1(style = "text-align:center") #{message}
+			form.center_content.main-body__form(action= product_action)
+				button#submit_go_back(type='Submit' ) Go back

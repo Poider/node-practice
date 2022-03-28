@@ -17,6 +17,8 @@ block content
 							h5(style= "margin-bottom:0.5rem;") Description:
 							li.main-body__item(style= "margin:0;  white-space: pre-line;font-size:0.8rem;margin-left:1rem") #{product.description}
 							form(action="/add-to-cart" method="post")
+								input(type = "hidden" value = product.id name='id')
 								button#submit(type="submit" class="product_title") Add to cart
+							a#submit(href="/product-details/"+product.id) Details
 			else
-				h1.not-available No products available
+				h1 No products available

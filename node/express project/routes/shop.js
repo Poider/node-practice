@@ -17,7 +17,7 @@ router.use('/cart',productController.getCart);
 router.use('/orders',productController.getOrders);
 router.use('/checkout',productController.getCheckout);
 router.use('/index',productController.getIndex);
-router.use('/product-details',productController.getProductDetails);
+router.get('/product-details/:productId',productController.getProductDetails);
 router.use('/products',productController.getProducts);
-
+router.post('/add-to-cart',productController.getAddtoCart);
 module.exports = router;

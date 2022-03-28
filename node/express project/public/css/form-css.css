@@ -48,17 +48,18 @@ cursor: pointer;
 
 #submit_go_back {
 	font: inherit;
-	display: block;
+	/* display: block; */
 	margin-top: 0.5rem;
 	padding : 0.3rem 1rem;
 	border-radius: 3px;
 	border : 1px solid #390727;
 	background-color: rgb(105, 115, 205);
 	cursor: pointer;
-	position: absolute;
-	left: 4%;
+	/* position: absolute;
+	left: 4%; */
 }
 .form_element{
 	margin: 1rem;
 
 }
+

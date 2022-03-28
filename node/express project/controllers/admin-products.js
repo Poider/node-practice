@@ -21,7 +21,7 @@ module.exports.getAddproducts = (req, res, next) => {
 exports.getProductadded = (req, res, next) => {//only after you send it as post u get to see the body request
 	// res.sendFile(path.join(__dirname, '../','views','product-added.html'));
 	new Product(req.body.product_title,req.body.img_url,req.body.price,req.body.product_description);
-	res.render('admin/product-added', { Title: 'Product Added'})
+	res.render('admin/product-added', { Title: 'Product Added', message : 'Product Added' , product_action : '/'})
 	
 	// product.save();
 	// books.push(req.body.product_title);
@@ -35,7 +35,28 @@ exports.getAdminProducts = (req, res, next)=>{
 	}
 
 exports.getEditProduct = (req, res, next)=>{
-	res.render('admin/edit-product', { Title: 'Product Added'})
+	productId = req.params.productId;
+	Product.findProductbyId(productId).then((product)=>{
+	res.render('admin/edit-product', { Title: 'Product Added',product:product})})
+}
+
+exports.getProductEditted = (req, res, next) => {
+	// productId = req.params.productId;
+	// console.log(req.body)
+
+	//check if product changed then change it otherwise dont?
+	Product.edit(req.body.id,req.body.product_title,req.body.img_url,req.body.price,req.body.product_description).then((msg)=>{console.log(msg);
+	res.render('admin/product-added', { Title: 'Product Editted', message : 'Product Editted' ,product_action : '/admin-products'})})
+}
+
+exports.getDeleteProduct = (req, res, next)=>{
+	Product.delete(req.body.id).then(()=>{
+		res.redirect('/product-deleted');
+	})
+}
+
+exports.getProductDeleted = (req, res, next) => {
+	res.render('admin/product-added', { Title: 'Product Deleted', message : 'Product Deleted',product_action : '/admin-products'})
 }
 
 exports.body_print = (req, res, next) => {

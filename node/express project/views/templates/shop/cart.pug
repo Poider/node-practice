@@ -1,3 +1,7 @@
 extends ../layouts/main-layout.pug
 block content
-	h1 cart
+	main.main-body
+		nav(class ="images" class = "product_item").main__nav
+			h1 My items:
+			//- add links to the product by its id (that will go fetch his item detail)
+			//- in front of it it should have the price

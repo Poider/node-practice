@@ -22,7 +22,13 @@ exports.getIndex  = (req, res, next) =>{
 	res.render('shop/index', {Title: 'Welcome',pathy :'shop/index' })
 }
 exports.getProductDetails = (req, res, next) =>{
-	res.render('shop/product-details', {Title:'Details'})
+	const product_id = req.params.productId;
+	Product.findProductbyId(product_id).then((book)=>{res.render('shop/product-details', {Title:'Details',book:book})})
+}
+
+exports.getAddtoCart = (req, res, next) =>{
+	console.log(req.body.id);
+	res.redirect('/products')
 }
 
 exports.getOrders = (req, res, next) => {

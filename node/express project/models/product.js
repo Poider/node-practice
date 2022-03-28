@@ -1,7 +1,9 @@
 const product = []
+const res = require('express/lib/response');
 const fs = require('fs');
 const path = require('path');
 const rootdir = require('../util/path');
+
 //usually this should save it in a database but we use for now this array
 
 const file_path = path.join(rootdir, 'data', 'file.json');
@@ -12,7 +14,9 @@ module.exports = class Product {
 		this.imageurl = imageurl;
 		this.price = price;
 		this.description = description;
+		this.id = Math.random().toString();
 		this.save();
+		console.log(this.id)
 	}
 
 	save() {
@@ -51,6 +55,96 @@ module.exports = class Product {
 					resolve([]);
 				}
 				resolve(books);
+			})
+		})
+	}
+
+	static findProductbyId(id){
+		return new Promise((resolve, reject) => {
+			fs.readFile(file_path, (err, data) => {
+				let books = [];
+				let book_found;
+				if (err) {// if no such file exists
+					resolve('file doesnt exist');//change to reject
+					return
+				}
+				try {
+					books = JSON.parse(data);
+					book_found = books.find((book)=>book.id === id)
+					
+				}
+				catch (err) {//if reading json failed
+					resolve('failed reading json');
+				}
+				 //console.log(book_found)
+				resolve(book_found);
+			})
+		})
+	}
+
+	static delete(id){
+		//work on logic all
+		return new Promise((resolve, reject) => {
+			fs.readFile(file_path, (err, data) => {
+				let books = [];
+			
+				let book_found;
+				if (err) {// if no such file exists
+					resolve('file doesnt exist');//change to reject
+					return
+				}
+				try {
+					books = JSON.parse(data);
+					
+					book_found = books.find((book)=>book.id === id)
+					
+					const index = books.indexOf(book_found);
+					// console.log(index);
+					books.splice(index, 1);
+					// console.log(books);
+					fs.writeFile(file_path, JSON.stringify(books), (err) => {
+						console.log(err);
+					})
+					resolve('');
+				}
+				catch (err) {//if reading json failed
+					resolve('failed reading json');
+				}
+			})
+		})
+	}
+	
+	
+	static edit(id,title,imageurl,price,description){// I dont like the file searchin all books and REWRITING the whole json file to update 1 book
+		return new Promise((resolve, reject) => {
+			// console.log('check')
+			fs.readFile(file_path, (err, data) => {
+				let books = [];		
+				let book_found;
+				if (err) {// if no such file exists
+					resolve('file doesnt exist');//change to reject
+					return
+				}
+				try {
+					books = JSON.parse(data);
+					book_found = books.find((book)=>book.id === id)
+					book_found.title = title;
+					book_found.imageurl = imageurl;
+					book_found.price = price;
+					book_found.description = description;
+					//console.log(books)
+					const stringified_data = JSON.stringify(books);
+					console.log(data);
+					fs.writeFile(file_path, stringified_data, (err) => {
+						// console.log(err);
+						resolve('fail')
+						return 
+					})
+					resolve('success');
+				}
+				catch (err) {//if reading json failed
+					resolve('failed reading json');
+				}
 			})
 		})
 	}

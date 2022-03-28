@@ -1,3 +1,17 @@
 extends ../layouts/main-layout.pug
+block css
+	link(rel='stylesheet' href='/css/product-css.css')
 block content
-	h1 product details
+		main.main-body
+		nav(class ="images" class = "product_item").main__nav
+			h1 #{book.title} details:
+			ol.main-body__list
+					h2.main-body__item(class= "product_title")  #{book.title}
+					li.main-body__item price: #{book.price>0?book.price+'$':'Not listed'}
+					li.main-body__item 
+						img(src = book.imageurl alt ="product image" width="200" height="200")
+					h5(style= "margin-bottom:0.5rem;") Description:
+					li.main-body__item(style= "margin:0;  white-space: pre-line;font-size:0.8rem;margin-left:1rem") #{book.description}
+					form(action="/add-to-cart" method="post")
+						input(type = "hidden" value = book.id name = 'id')
+						button#submit(type="submit" class="product_title" class = "images") Add to cart

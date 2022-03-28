@@ -1,0 +1,9 @@
+/* ++ ////!!! I dont like the file searchin all books and REWRITING the whole json file to update 1 book
+////problem also that it .post doesnt work and .use works with delete
+//array pop leaves an empty object
+*/
+
+//go back css
+//problem refreshing page "eddited" problem made cus of async?
+
+//without ajax or front end I cant add to wishlist without redirecting so for now I go with a redirecting to same page solution
