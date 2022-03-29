@@ -1,12 +1,12 @@
 const product = []
-const res = require('express/lib/response');
+// const res = require('express/lib/response');????
 const fs = require('fs');
 const path = require('path');
 const rootdir = require('../util/path');
 
 //usually this should save it in a database but we use for now this array
 
-const file_path = path.join(rootdir, 'data', 'file.json');
+const cart_path = path.join(rootdir, 'data', 'cart.json');
 
 module.exports = class Product {
 	constructor(title,imageurl,price,description) {
@@ -16,10 +16,10 @@ module.exports = class Product {
 		this.description = description;
 		this.id = Math.random().toString();
 		this.save();
-		console.log(this.id)
+	//	console.log(this.id)
 	}
 
-	save() {
+	save(file_path = path.join(rootdir, 'data', 'file.json')) { 
 		fs.readFile(file_path, (err, data) => {
 			let books = [];
 			if (!err) {
@@ -29,7 +29,6 @@ module.exports = class Product {
 				catch (err) {
 					console.log('resetting json cus of :' + err);
 				}
-
 			}
 			books.push(this);
 			fs.writeFile(file_path, JSON.stringify(books), (err) => {
@@ -37,10 +36,33 @@ module.exports = class Product {
 			})
 		})//this func is async
 		// product.push(this.title);
+	}
+
+	static save_cart(product) {
+		return new Promise((resolve, reject) => {
+			fs.readFile(cart_path, (err, data) => {
+				let books = [];
+				if (!err) {
+					try {
+						books = JSON.parse(data);
+					}
+					catch (err) {
+						console.log('resetting json cus of :' + err);
+					}
+	
+				}
+				books.push(product);
+				fs.writeFile(cart_path, JSON.stringify(books), (err) => {
+					//console.log(err);
+				})
+			})//this func is async
+			// product.push(this.title);
+		})
+
 
 	}
 
-	static fetchProducts() {
+	static fetchProducts(file_path = path.join(rootdir, 'data', 'file.json')) {
 		return new Promise((resolve, reject) => {
 			fs.readFile(file_path, (err, data) => {
 				let books = [];
@@ -59,11 +81,12 @@ module.exports = class Product {
 		})
 	}
 
-	static findProductbyId(id){
+	static findProductbyId(id, file_path = path.join(rootdir, 'data', 'file.json')){
 		return new Promise((resolve, reject) => {
 			fs.readFile(file_path, (err, data) => {
 				let books = [];
 				let book_found;
+				// console.log(id)
 				if (err) {// if no such file exists
 					resolve('file doesnt exist');//change to reject
 					return
@@ -71,7 +94,7 @@ module.exports = class Product {
 				try {
 					books = JSON.parse(data);
 					book_found = books.find((book)=>book.id === id)
-					
+
 				}
 				catch (err) {//if reading json failed
 					resolve('failed reading json');
@@ -82,7 +105,7 @@ module.exports = class Product {
 		})
 	}
 
-	static delete(id){
+	static delete(id,file_path = path.join(rootdir, 'data', 'file.json')){
 		//work on logic all
 		return new Promise((resolve, reject) => {
 			fs.readFile(file_path, (err, data) => {
@@ -103,7 +126,7 @@ module.exports = class Product {
 					books.splice(index, 1);
 					// console.log(books);
 					fs.writeFile(file_path, JSON.stringify(books), (err) => {
-						console.log(err);
+						//console.log(err);
 					})
 					resolve('');
 				}
@@ -115,7 +138,7 @@ module.exports = class Product {
 	}
 	
 	
-	static edit(id,title,imageurl,price,description){// I dont like the file searchin all books and REWRITING the whole json file to update 1 book
+	static edit(id,title,imageurl,price,description,file_path = path.join(rootdir, 'data', 'file.json')){// I dont like the file searchin all books and REWRITING the whole json file to update 1 book
 		return new Promise((resolve, reject) => {
 			// console.log('check')
 			fs.readFile(file_path, (err, data) => {

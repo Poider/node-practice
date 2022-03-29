@@ -3,6 +3,9 @@
 //clean names getsmth for get and postsmth for post
 
 const Product = require('../models/product');
+const rootdir = require('../util/path');
+const path = require('path')
+const cart_path = path.join(rootdir, 'data', 'cart.json');
 
 exports.getProducts = (req,res,next) => {
 	//res.sendFile(path.join(rootdir,'views','shop.html'));
@@ -12,8 +15,10 @@ exports.getProducts = (req,res,next) => {
 
 exports.getCart = (req, res, next) => {
 	//cartfetch then=>
-	res.render('shop/cart', {Title: 'Cart',pathy: 'shop/cart'})
+	Product.fetchProducts(cart_path).then((products)=>{
+	res.render('shop/cart', {Title: 'Cart',pathy: 'shop/cart',products : products})})
 }
+
 
 exports.getCheckout = (req, res, next) => {
 	res.render('shop/checkout', {Title:'Checkout',pathy :'shop/checkout'})
@@ -27,8 +32,27 @@ exports.getProductDetails = (req, res, next) =>{
 }
 
 exports.getAddtoCart = (req, res, next) =>{
-	console.log(req.body.id);
-	res.redirect('/products')
+	const product_id = req.body.id;
+	Product.findProductbyId(product_id,cart_path).then((book)=>{
+
+		if(!book)
+		{
+			Product.findProductbyId(product_id).then((product)=>{
+			Product.save_cart(product)
+			})
+		}
+		res.redirect('/products')
+	})	
+
+}
+
+exports.getRemovefromCart = (req, res, next)=>{
+
+	const productId = req.body.id;
+	Product.delete(productId,cart_path).then(()=>{
+		res.redirect('/cart');
+	})
+
 }
 
 exports.getOrders = (req, res, next) => {

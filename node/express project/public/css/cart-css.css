@@ -1,0 +1,25 @@
+
+
+#product_element{
+	
+	 /* display: inline-block; */
+}
+
+#cart_title{
+	/* margin : 0 5rem; */
+}
+
+#cart_remove_button{
+	/* float: right;
+	text-align: left; */
+	/* margin : 0 5rem; */
+	position : absolute;
+	right: 10%;
+}
+#cart_price{
+	/* text-align: center; */
+	/* text-align: center; */
+	/* float:none; */
+	position : absolute;
+	right : 50%;
+}

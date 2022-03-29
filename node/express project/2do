@@ -7,3 +7,5 @@
 //problem refreshing page "eddited" problem made cus of async?
 
 //without ajax or front end I cant add to wishlist without redirecting so for now I go with a redirecting to same page solution
+
+goals: learnin to deal with async funcs, being able to build a dynamic website that changes with the user infos and data
