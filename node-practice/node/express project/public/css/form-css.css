@@ -1,0 +1,65 @@
+#submit {
+	font: inherit;
+	display: block;
+	margin-top: 0.5rem;
+	padding : 0.3rem 1rem;
+	border-radius: 3px;
+	border : 1px solid #390727;
+	background-color: rgb(105, 115, 205);
+	cursor: pointer;
+}
+
+form.main-body__form {
+	width: 50%;
+	margin: auto;
+}
+
+input {
+	font: inherit;
+	font-family: inherit;
+	margin: 0.1rem 0;
+	min-width: 60%;
+	display: block;
+}
+
+label {
+	font: inherit;
+}
+
+button:hover,button:active{
+	background-color:rgb(197, 223, 160);
+	color:white;
+}
+
+.main-body__list {
+	list-style: none;
+	
+}
+
+.main-body__nav{
+	height: 50%;
+
+}
+
+.main-body__item:hover,.main-body__item:active {
+color:rgb(73, 58, 116);
+cursor: pointer;
+}
+
+#submit_go_back {
+	font: inherit;
+	/* display: block; */
+	margin-top: 0.5rem;
+	padding : 0.3rem 1rem;
+	border-radius: 3px;
+	border : 1px solid #390727;
+	background-color: rgb(105, 115, 205);
+	cursor: pointer;
+	/* position: absolute;
+	left: 4%; */
+}
+.form_element{
+	margin: 1rem;
+
+}
+

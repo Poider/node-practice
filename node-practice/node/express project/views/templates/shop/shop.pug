@@ -1,0 +1,24 @@
+extends ../layouts/main-layout.pug
+block css 
+	link(rel='stylesheet' href='/css/product-css.css')
+block content
+	main.main-body
+		nav.main__nav
+			if (data.length > 0)
+				h1 My products
+				p Available products:
+				ol.main-body__list
+					each product in data
+						article.product_item
+							h2.main-body__item(class= "product_title")  #{product.title}
+							li.main-body__item price: #{product.price>0?product.price+'$':'Not listed'}
+							li.main-body__item 
+								img(class = "images" src = product.imageurl alt ="product image" width="200" height="200")
+							h5(style= "margin-bottom:0.5rem;") Description:
+							li.main-body__item(style= "margin:0;  white-space: pre-line;font-size:0.8rem;margin-left:1rem") #{product.description}
+							form(action="/add-to-cart" method="post")
+								input(type = "hidden" value = product.id name='id')
+								button#submit(type="submit" class="product_title") Add to cart
+							a#submit(href="/product-details/"+product.id) Details
+			else
+				h1 No products available

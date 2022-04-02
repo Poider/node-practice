@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> <%= %></title>
+	<!-- <style type="text/css">
+	
+	</style> -->
+	<link rel="stylesheet" href="/css/main-css.css">
+	<link rel="stylesheet" href="css/form.css">
+</head>
+
+<body>
+	<header class="main-header">
+		<nav class="main-header__nav"></nav>
+		<ul class="main-header__list">
+
+			<li class="main-header__item"><a href="/products">Products</a></li>
+			<li class="main-header__item" class="active"><a href="/add-products">Add Product</a></li>
+		</ul>
+		</nav>
+	</header>
+	<main class="main-body">
+		<form action="/product-added" method="post" class="main-body__form">
+			<!-- send it to a page that checks if the product successfully added, and redirect depending on whether it failed or not -->
+			<label name="product_title_lable">Title</label>
+			<input type="text" name="product_title" id="product_title" placeholder="product title">
+			<button type="submit" id="submit">Add</button>
+		</form>
+
+	</main>
+</body>
+
+</html>

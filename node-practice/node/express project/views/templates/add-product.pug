@@ -1,0 +1,29 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title  #{Title}
+  //
+    <style type="text/css">
+    </style>
+  link(rel='stylesheet' href='/css/main-css.css')
+  link(rel='stylesheet' href='css/form.css')
+header.main-header
+  nav.main-header__nav
+  ul.main-header__list
+    li.main-header__item
+      a(href='/products') Products
+    li.main-header__item
+      a(href='add-products') Add Product
+main.main-body
+  form.main-body__form(action='/product-added' method='post')
+    // send it to a page that checks if the product successfully added, and redirect depending on whether it failed or not
+    label(name='product_title_lable') Title
+    input#product_title(type='text' name='product_title' placeholder='product title')
+    button#submit(type='submit') Add
+  br
+  h1 other products
+      ol.main-header__list
+        each product in data
+          li.main-header__item #{product}

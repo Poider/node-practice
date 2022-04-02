@@ -1,0 +1,26 @@
+extends ../layouts/main-layout.pug
+block content
+	main.main-body
+		form.main-body__form(action='/product-added' method='post')
+			// send it to a page that checks if the product successfully added, and redirect depending on whether it failed or not
+			nav.form_element
+				label(name='product_title_label' for="product_title") Title
+				input#product_title(type='text' name='product_title' placeholder='product title')
+			nav.form_element
+				label(name='img_url_label' for="img_url") Image Url
+				input#product_title(type='text' name='img_url' placeholder='Insert image Url')
+			nav.form_element
+				label(name='price_label' for="price") Price
+				input#product_title(type='number' name='price' placeholder='$')
+			nav.form_element
+				label(name='product_description_lable' for="product_title") Description
+				br
+				textarea#product_title(type='text' name='product_description' placeholder='Description' rows="5" style="min-width: 60%")
+			nav.form_element
+				button#submit(type='submit') Add
+		br
+		//- nav.main-body__nav
+		//- 	h1 other products
+		//- 		ol.main-body__list
+		//- 			each product in data
+		//- 				li.main-body__item #{product.title}
